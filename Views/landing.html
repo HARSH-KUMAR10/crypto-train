@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>Crypto-Train | Home</title>
+    <style>
+        *{
+            margin:0%;
+            padding:0%;
+        }
+        body{
+            background-color: #eef;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        #header{
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0px 0px 2px 2px gray;
+            align-items:flex-end;
+            font-family: monospace;
+            padding:10px;
+        }
+        #app-name{
+            font-size: 25px;
+            font-weight: 800;
+        }
+        .fas{
+            color:yellowgreen;
+        }
+        #how-to{
+            background-color: white;
+            padding:60px 10px 60px 10px;
+            margin:2px 0px;
+            font-family: verdana;
+        }
+        #how-to-line,#coin-line{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        #how-to-header{
+            font-size: 40px;
+            font-weight: 900;
+            text-align: center;
+            padding: 0px 0px 40px 0px;
+        }
+        #how-to-steps{
+            box-shadow: 0px 0px 2px 2px gray;
+            width: 28%;
+            border:1px solid black;
+            border-radius: 10px;
+            margin:10px;
+        }
+        #how-to-topic{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 2px solid black;
+            padding:10px;
+            background-color: yellowgreen;
+        }
+        #how-to-about{
+            padding:10px;
+            font-size: 16px;
+        }
+        #how-to-about > section{
+            background-color: #2962ff;
+            padding:15px;
+            margin:5px;
+            text-align: center;
+        }
+        #how-to-about > section>a{
+            color:white;
+            font-weight: 800;
+            text-decoration: none;
+        }
+        #coins,#score-card{
+            background-color: white;
+            margin:2px 0px;
+            padding:20px 20px 20px 20px;
+            font-family: verdana;
+        }
+        #coin{
+            border:2px solid black;
+            box-shadow: 0px 0px 2px 2px gray;
+            border-radius: 10px;
+            width: 27%;
+            text-align: center;
+            margin:10px;
+        }
+        #coin-header,#score-card-header{
+            font-size: 40px;
+            font-weight: 900;
+            text-align: center;
+            padding: 0px 0px 40px 0px;
+        }
+        #coin-name{
+            font-size: 20px;
+            font-weight: 800;
+            border-top: 2px solid black;
+            padding:10px;
+        }
+        #coin-symbol{
+            font-size:40px;
+            font-weight: 900;
+            border:4px solid darkblue;
+            background-color: darkblue;
+            color:white;
+            border-radius: 50%;
+            padding:20px;
+            display: inline-block;
+            margin:10px;
+        }
+        #coin-button{
+            background-color: #2962ff;
+            padding:15px;
+            margin:15px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+        #score-card-row{
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            margin:5px 100px;
+        }
+    </style>
+</head>
+<body>
+    <section id="header">
+        <section id="app-name">Crypto-Train</section>
+        <section><i style='font-size:24px' class='fas'>&#xf406;</i><section id='userLogged'><a href="/login" >login/sign-up</a></section></section>
+    </section>
+    <section id="how-to">
+        <section id="how-to-header">How to use our Platform ?</section>
+        <section id="how-to-line">
+        <section id="how-to-steps">
+            <section id="how-to-topic">1. Sign-up or Login to your account</section>
+            <section id="how-to-about"><br/>To get started with cryto-trading first you have to create account for yourself. <br><section><a href="/login">Sign-Up/Login</a></section></section>
+        </section>
+        <section id="how-to-steps">
+            <section id="how-to-topic">2. Discover all the Coins available</section>
+            <section id="how-to-about">Initially we have add only a small amount of token and there are many more tokens on the way.Discover the GOT inspired token, Buy, Sell and make your worth. <section><a href="#coins">About Coins</a></section></section>
+        </section>
+        <section id="how-to-steps">
+            <section id="how-to-topic">3. Visit the market to Buy or Sell</section>
+            <section id="how-to-about">There is no right time to buy a token or sell a token. You have to buys and sell to make money and get yourself on the scoreboard with other world-class traders <section><a href="#score-card">See Scoreboard</a></section></section>
+        </section>
+        <section id="how-to-steps">
+            <section id="how-to-topic">Learn and Have Fun</section>
+            <section id="how-to-about">In today's world it's very important to learn about trading and learning by doing is the best way to go.</section>
+        </section>
+        </section>
+    </section>
+    <section id="coins">
+        <section id="coin-header"> Coins </section>
+        <section id="coin-line">
+        <section id="coin">
+        <section id="coin-symbol">L</section>
+        <section id="coin-name">Lannister Coin</section>
+        <section id="coin-button"><a href="/coin" style="color:white;text-decoration: none;"> learn more</a></section>
+        </section>
+        <section id="coin">
+            <section id="coin-symbol">S</section>
+            <section id="coin-name">Stark Coin</section>
+            <section id="coin-button"><a href="/coin" style="color:white;text-decoration: none;"> learn more</a></section>
+        </section>
+        <section id="coin">
+            <section id="coin-symbol">B</section>
+            <section id="coin-name">Baratheon Coin</section>
+            <section id="coin-button"><a href="/coin" style="color:white;text-decoration: none;"> learn more</a></section>
+        </section>
+        <section id="coin">
+            <section id="coin-symbol">T</section>
+            <section id="coin-name">Targaryan Coin</section>
+            <section id="coin-button"><a href="/coin" style="color:white;text-decoration: none;"> learn more</a></section>
+        </section>
+        <section id="coin">
+            <section id="coin-symbol">M</section>
+            <section id="coin-name">Martel Coin</section>
+            <section id="coin-button"><a href="/coin" style="color:white;text-decoration: none;"> learn more</a></section>
+        </section>
+        <section id="coin">
+            <section id="coin-symbol">G</section>
+            <section id="coin-name">Greyjoy Coin</section>
+            <section id="coin-button"><a href="/coin" style="color:white;text-decoration: none;"> learn more</a></section>
+        </section>
+        </section>
+    </section>
+    <section id="score-card">
+        <section id="score-card-header"> Score-Board </section>
+        <section id='score'></section>
+    </section>
+    <script>
+        var url="https://crypto-train.herokuapp.com/";
+        var token=[];
+        var lan=0,sta=0,tar=0,mar=0,bar=0,gre=0;
+        init();
+        async function init(){
+        var email = localStorage.getItem('email');
+        var token = localStorage.getItem('tokens');
+        if(checkVariable(email)&&checkVariable(token)){
+            document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML=email+" <button onclick='logout()'>logout</button>";
+        }else{
+            document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML='<a href="/login" >login/sign-up</a>';
+        }
+        await getMarketPrice();
+        await getScores();
+        }
+        function checkVariable(x){
+            if(x!=null&&x!=undefined&&x!=''){
+                return true;
+            }
+            return false;
+        }
+        function logout(){
+            localStorage.setItem('email','');
+            localStorage.setItem('pass','');
+            localStorage.setItem('tokens','');
+            init();
+        }
+        async function getScores(){
+            var html = "";
+            await fetch(url+'/getAll').then(res=>res.json()).then(data=>{
+                for(i=0;i<data.length;i++){
+                html+='<section id="score-card-row"><section>'+data[i].FirstName+' '+data[i].LastName+'</section> <section>'+total(data[i].Token)+'</section> </section>'
+                }
+            });
+            document.getElementById('score').innerHTML=html;
+        }
+        function total(y){
+        var Total = 0;
+        console.log(lan,sta,tar,mar,bar,gre);
+        Total+=parseFloat(y[0])+parseFloat(y[1])*lan+parseFloat(y[2])*sta+parseFloat(y[3])*tar+parseFloat(y[4])*mar+parseFloat(y[5])*bar+parseFloat(y[6])*gre;
+        return Total;
+        }
+        async function getMarketPrice(){
+        var x=0;
+        while(lan==0){
+            await fetch('https://api.coincap.io/v2/assets/cardano').then(res=>res.json()).then(d=>{
+                lan = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+        }
+        x=0;
+        while(sta==0){
+            await fetch('https://api.coincap.io/v2/assets/tether').then(res=>res.json()).then(d=>{
+                sta = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+            setTimeout(()=>{console.log('wait')},1000);
+        }
+        x=0;
+        while(tar==0){
+            await fetch('https://api.coincap.io/v2/assets/xrp').then(res=>res.json()).then(d=>{
+                tar = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+
+        }
+        x=0;
+        while(mar==0){
+            await fetch('https://api.coincap.io/v2/assets/polkadot').then(res=>res.json()).then(d=>{
+                mar = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err)
+            });
+        }
+        x=0;
+        while(bar==0){
+            await fetch('https://api.coincap.io/v2/assets/dogecoin').then(res=>res.json()).then(d=>{
+                bar = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+        }
+        x=0;
+        while(gre==0){
+            await fetch('https://api.coincap.io/v2/assets/chainlink').then(res=>res.json()).then(d=>{
+                gre = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+
+        }
+    }
+    </script>
+</body>
+</html>

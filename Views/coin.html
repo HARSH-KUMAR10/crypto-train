@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>Crypto-Train | Coins</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <style>
+        *{
+            margin:0%;
+            padding:0%;
+        }
+        body{
+            font-family: monospace;
+            background-color: #eef;
+        }
+        #header{
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0px 0px 2px 2px gray;
+            align-items:flex-end;
+            font-family: monospace;
+            padding:10px;
+        }
+        #app-name{
+            font-size: 25px;
+            font-weight: 800;
+        }
+        .fas{
+            color:yellowgreen;
+        }
+        #coin-search{
+            margin:2px 0px;
+            background-color: white;
+            padding:20px;
+            display: flex;
+            justify-content: space-around;
+        }
+        #coin,#duration,#BorS,#count,#bscoin,#bscount{
+            font-size: 20px;
+            padding:10px;
+            font-weight: 700;
+            padding:10;
+        }
+        #show-button{
+            background-color: #2962ff;
+            color:white;
+            font-size: 20px;
+            text-align: center;
+            padding:10px;
+            border:2px solid #2962ff;
+        }
+        #charts{
+            background-color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            padding:20px;
+        }
+        #Market{
+            background-color: white;
+            margin:5px 0px;
+        }
+        #market-header{
+            font-size: 30px;
+            font-weight: 900;
+            text-align: center;
+        }
+        #market-you{
+            font-size: 20px;
+            text-align: center;
+            border-bottom: 2px solid black;
+            padding:10px;
+        }
+        #market-myself{
+            width: 25%;
+            margin:20px;
+            border:2px solid black;
+            border-radius: 10px;
+        }
+        #market-main{
+            width:65%;
+            padding:20px;
+            border:2px solid black;
+            margin:20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #token-data>div{
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            padding:5px;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <section id="header">
+        <section id="app-name"><a href="/" style="text-decoration: none; color:yellowgreen">Crypto-Train</a></section>
+        <section><i style='font-size:24px' class='fas'>&#xf406;</i><section id="userLogged"><a href="/login">login/sign-up</a></section></section>
+    </section>
+    <section id="coin-search">
+        <section>
+            <select id="coin">
+                <option value="cardano">Lannister Coin</option>
+                <option value="tether">Stark Coin</option>
+                <option value="xrp">Targaryen Coin</option>
+                <option value="polkadot">Martell Coin</option>
+                <option value="dogecoin">Baratheon Coin</option>
+                <option value="chainlink">Greyjoy Coin</option>
+            </select>
+        </section>
+        <section>
+            <select id="duration">
+                <option value="m15">1 day</option>
+                <option value="h2">1 week</option>
+                <option value="h12">1 month</option>
+            </select>
+        </section>
+            <section><button id="show-button" onclick="setChart()">Show Data</button></section>
+        </section>
+    </section>
+    <section id="charts">
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+    </section>
+    <section id="Market">
+        <section id="market-header">Your Portfolio</section>
+        <section style="display: flex;justify-content: space-around;">
+        <section id="market-myself">
+        <section id="market-you">Your Possesion</section>
+        <section id="token-data">
+            <div>Tokens : <span id="one"></span></div>
+            <div>Lannister : <span id="two"></span></div>
+            <div>Stark : <span id="three"></span></div>
+            <div>Targaryen : <span id="four"></span> </div>
+            <div>Martell : <span id="five"></span></div>
+            <div>Baratheon : <span id="six"></span></div>
+            <div>Greyjoy : <span id="seven"></span></div>
+            <div>Total : <span id="total"></span></div>
+        </section>
+        </section>
+        <section id="market-main">
+        <select id="bscoin">
+            <option value="1">Lannister Coin</option>
+            <option value="2">Stark Coin</option>
+            <option value="3">Targaryen Coin</option>
+            <option value="4">Martell Coin</option>
+            <option value="5">Baratheon Coin</option>
+            <option value="6">Greyjoy Coin</option>
+        </select>
+        <input type="number" id="bscount" placeholder="Enter Quantity"/>
+        <select id="BorS">
+            <option value="buy">Buy</option>
+            <option value="sell">Sell</option>
+        </select><br><br>
+        <button id='show-button' onclick="action()">confirm</button>
+        <section id="errorx" style="display:none;">Please fill all</section>
+        <section id="errory" style="display:none;">You don't have enough tokens</section>
+        <section id="errorz" style="display:none;">Transaction Successful !</section>
+        <section id="erroraa" style="display:none;">Error Occured Transaction Failed !</section>
+        </section>
+        </section>
+    </section>
+    <script>
+    var url = "https://crypto-train.herokuapp.com/";
+    var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+    var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+    var lan=0,sta=0,tar=0,mar=0,bar=0,gre=0;
+    var email="";
+    var pass="";
+    var token=[];
+    async function getMarketPrice(){
+        var x=0;
+        while(lan==0){
+            await fetch('https://api.coincap.io/v2/assets/cardano').then(res=>res.json()).then(d=>{
+                lan = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+        }
+        x=0;
+        while(sta==0){
+            await fetch('https://api.coincap.io/v2/assets/tether').then(res=>res.json()).then(d=>{
+                sta = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+            setTimeout(()=>{console.log('wait')},1000);
+        }
+        x=0;
+        while(tar==0){
+            await fetch('https://api.coincap.io/v2/assets/xrp').then(res=>res.json()).then(d=>{
+                tar = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+
+        }
+        x=0;
+        while(mar==0){
+            await fetch('https://api.coincap.io/v2/assets/polkadot').then(res=>res.json()).then(d=>{
+                mar = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err)
+            });
+        }
+        x=0;
+        while(bar==0){
+            await fetch('https://api.coincap.io/v2/assets/dogecoin').then(res=>res.json()).then(d=>{
+                bar = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+        }
+        x=0;
+        while(gre==0){
+            await fetch('https://api.coincap.io/v2/assets/chainlink').then(res=>res.json()).then(d=>{
+                gre = Math.round(d.data.priceUsd*100)/100;
+            }).catch(err=>{
+                console.log(err);
+            });
+
+        }
+    }
+    function total(y){
+        var Total = 0;
+        Total+=parseFloat(y[0])+parseFloat(y[1])*lan+parseFloat(y[2])*sta+parseFloat(y[3])*tar+parseFloat(y[4])*mar+parseFloat(y[5])*bar+parseFloat(y[6])*gre;
+        document.getElementById('total').innerHTML=Total;
+
+    }
+    async function init(){
+        await getMarketPrice();
+            email = localStorage.getItem('email');
+            pass = localStorage.getItem('pass');
+            var tokens = localStorage.getItem('tokens');
+            await fetch(url+'/checkUser?Email='+email+'&Password='+pass).then(res=>res.json()).then(d=>{
+                if(d.logged){
+                    tokens=d.data[0].Token;
+                }
+            })
+            token = tokens;
+            if(checkVariable(email)&&checkVariable(token)){
+                console.log(lan,sta,tar,mar,bar,gre)
+                document.getElementById('userLogged').innerHTML=email+" <button onclick='logout()'>logout</button>";
+                document.getElementById('one').innerHTML=token[0];
+                document.getElementById('two').innerHTML=(''+token[1]+' x '+lan);
+                document.getElementById('three').innerHTML=''+token[2]+' x '+sta;
+                document.getElementById('four').innerHTML=''+token[3]+' x '+tar;
+                document.getElementById('five').innerHTML=''+token[4]+' x '+mar;
+                document.getElementById('six').innerHTML=''+token[5]+' x '+bar;
+                document.getElementById('seven').innerHTML=''+token[6]+' x '+gre;
+            }else{
+                document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML='<a href="/login" >login/sign-up</a>';
+            }
+            await total(token);
+        xValues=[];yValues=[];
+        var z=0;
+        while(z==0){
+        await fetch('https://api.coincap.io/v2/assets/cardano/history?interval=m15').then(res=>res.json()).then(data=>{
+            var n = data.data.length;
+            var j=0;
+            for(i=n-96;i<n;i++){
+                xValues[xValues.length]=24-j++/4;
+                yValues[yValues.length]=Math.round(data.data[i].priceUsd*1000)/1000;
+            }
+            z=1;
+        }).catch(err=>{
+            console.log(err);
+            z=0;
+        });
+        }
+        drawChart();
+    }
+    var chart = null;
+    function drawChart(){
+        if(chart!=null){
+            chart.destroy();
+        }
+        chart = new Chart("myChart", {
+        type: "line",
+        data: {
+        labels: xValues,
+        datasets: [{
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "yellowgreen",
+            borderColor: "green",
+            data: yValues
+        }]
+        },
+        options: {
+            legend: {display: false},
+        }
+    });
+    }
+    async function setChart(){
+        var id = document.getElementById('coin').value;
+        var int = document.getElementById('duration').value;
+        xValues=[];yValues=[];
+        var z=0;
+        while(z==0){
+        await fetch('https://api.coincap.io/v2/assets/'+id+'/history?interval='+int).then(res=>res.json()).then(data=>{
+            var n = data.data.length;
+            var j=0;
+            if(int=='m15'){
+            for(i=n-96;i<n;i++){
+                xValues[xValues.length]=24-j++/4;
+                yValues[yValues.length]=Math.round(data.data[i].priceUsd*1000)/1000;
+            }
+            }else if(int == 'h2'){
+                for(i=n-84;i<n;i++){
+                xValues[xValues.length]=7-j++/12;
+                yValues[yValues.length]=Math.round(data.data[i].priceUsd*1000)/1000;
+                }
+            }else{
+                for(i=n-62;i<n;i++){
+                xValues[xValues.length]=31-j++/2;
+                yValues[yValues.length]=Math.round(data.data[i].priceUsd*1000)/1000;
+                }
+            }
+            z=1;
+        }).catch(err=>{
+            console.log(err);
+            z=0;
+        });
+        }
+        drawChart();
+    }
+    function checkVariable(x){
+            if(x!=null&&x!=undefined&&x!=''&&x!=0){
+                return true;
+            }
+            return false;
+        }
+    function getAmount(x){
+        if(x=='1'){
+            return lan;
+        }else if(x=='2'){
+            return sta;
+        }else if(x=='3'){
+            return tar;
+        }else if(x=='4'){
+            return mar;
+        }else if(x=='5'){
+            return bar;
+        }else if(x=='6'){
+            return gre;
+        }
+    }
+    async function action(){
+        var coin = document.getElementById('bscoin').value;
+        var amount = document.getElementById('bscount').value;
+        var option = document.getElementById("BorS").value;
+        var coinAmount = getAmount(coin);
+        if(checkVariable(coin)&&checkVariable(amount)&&checkVariable(option)){
+            console.log(token[0],coinAmount,amount);
+            if(option=='buy'){
+                if(token[0]>coinAmount*amount){
+                    var choice = confirm("total : "+token[0]+"\nYour Buy:"+(coinAmount*amount)+"\nAre you sure you want to buy ?");
+                    if(choice){
+                        token[0]=token[0]-coinAmount*amount;
+                        token[coin]=parseFloat(token[coin])+parseFloat(amount);
+                        console.log(token);
+                        await fetch(url+'/updateToken?Email='+email+"&Pass="+pass+"&token="+token).then(res=>res.json()).then(d=>{
+                            if(d){
+                    document.getElementById('errorx').style.display="none";
+                    document.getElementById('errory').style.display="none";
+                    document.getElementById('errorz').style.display="block";
+                    document.getElementById('erroraa').style.display="none";
+                    init();
+                            }else{
+                    document.getElementById('errorx').style.display="none";
+                    document.getElementById('errory').style.display="none";
+                    document.getElementById('errorz').style.display="none";
+                    document.getElementById('erroraa').style.display="block";
+                            }
+                        });
+                    }
+                }else{
+                    document.getElementById('errorx').style.display="none";
+                    document.getElementById('errory').style.display="block";
+                    document.getElementById('errorz').style.display="none";
+                    document.getElementById('erroraa').style.display="none";
+                }
+            }else{
+                if(token[coin]<amount){
+                    document.getElementById('errorx').style.display="none";
+                    document.getElementById('errory').style.display="block";
+                    document.getElementById('errorz').style.display="none";
+                    document.getElementById('erroraa').style.display="none";
+                }else{
+                    token[0]=parseFloat(token[0])+parseFloat(amount)*parseFloat(coinAmount);
+                    token[coin]-=amount;
+                    console.log(amount,coinAmount)
+                    console.log(token);
+                    await fetch(url+'/updateToken?Email='+email+"&Pass="+pass+"&token="+token).then(res=>res.json()).then(d=>{
+                            if(d){
+                    document.getElementById('errorx').style.display="none";
+                    document.getElementById('errory').style.display="none";
+                    document.getElementById('errorz').style.display="block";
+                    document.getElementById('erroraa').style.display="none";
+                    init();
+                            }else{
+                    document.getElementById('errorx').style.display="none";
+                    document.getElementById('errory').style.display="none";
+                    document.getElementById('errorz').style.display="none";
+                    document.getElementById('erroraa').style.display="block";
+                            }
+                        });
+                }
+            }
+        }else{
+            console.log(token[0],token[coin],amount);
+            document.getElementById('errorx').style.display="block";
+            document.getElementById('errory').style.display="none";
+            document.getElementById('errorz').style.display="none";
+            document.getElementById('erroraa').style.display="none";
+        }
+        }
+        function logout(){
+            localStorage.setItem('email','');
+            localStorage.setItem('pass','');
+            localStorage.setItem('tokens','');
+            init();
+        }
+    </script>
+</body>
+</html>
