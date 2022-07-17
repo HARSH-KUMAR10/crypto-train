@@ -1,4 +1,6 @@
-# Crypto-Train: A Practice marketplace where you can buy-sell tokens
+# Crypto-Train: A Practice marketplace where you can buy-sell tokens 
+[devpost-project](https://devpost.com/software/crypto-train?ref_content=user-portfolio&ref_feature=in_progress)
+[live-project](https://crypto-train.herokuapp.com/)
 #### This is a trading platform where you can register and will be alotted with some tokens to buy coins buy and sell at the right time to increase your overall wealth and progress on the leaderboard
 ## Components Involved
 ##### Coins
