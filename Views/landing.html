@@ -140,7 +140,7 @@
         padding:10px;
         border-radius: 2px;
         margin:5%;
-        font-size:15px;
+        font-size:17px;
         font-weight: 900;
       }
       @media only screen and (max-width:900px) {
@@ -162,9 +162,9 @@
             >Crypto-Train</a
           >
         </h4>
-        <section style="width:200px">
+        <section style="width:300px">
           <section id="userLogged">
-              <i style="font-size: 20px" class="fas">&#xf406;</i>
+            &#9883;
               <a style="text-decoration:none;color:white;" href="/login">login/sign-up</a>
         </section>
         </section>
@@ -273,7 +273,7 @@
         if(checkVariable(email)&&checkVariable(token)){
             document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML=email+" <br/><button onclick='logout()'>logout</button>";
         }else{
-            document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML=`<i style="font-size: 20px" class="fas">&#xf406;</i>
+            document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML=`&#9883;
               <a style="text-decoration:none;color:white;" href="/login">login/sign-up</a>`;
         }
         await getMarketPrice();

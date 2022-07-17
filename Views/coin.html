@@ -26,7 +26,7 @@
             padding:10px;
         }
         #app-name{
-            font-size: 25px;
+        font-size: 40px;
             font-weight: 800;
         }
         .fas{
@@ -99,6 +99,16 @@
             display: flex;
             justify-content: space-around;
         }
+        
+      #userLogged{
+        background-color: #2962ff;
+        color:white;
+        padding:10px;
+        border-radius: 2px;
+        margin:5%;
+        font-size:17px;
+        font-weight: 900;
+      }
         @media only screen and (max-width:900px) {
             #market-myself{
             width: 80%;
@@ -121,9 +131,18 @@
 </head>
 <body onload="init()">
     <section id="header">
-        <section id="app-name"><a href="/" style="text-decoration: none; color:yellowgreen">Crypto-Train</a></section>
-        <section><i style='font-size:24px' class='fas'>&#xf406;</i><section id="userLogged"><a href="/login">login/sign-up</a></section></section>
-    </section>
+        <h4 id="app-name">
+          <a href="/" style="text-decoration: none; color: yellowgreen"
+            >Crypto-Train</a
+          >
+        </h4>
+        <section style="width:300px">
+          <section id="userLogged">
+                &#9883;
+              <a style="text-decoration:none;color:white;" href="/login">login/sign-up</a>
+        </section>
+        </section>
+      </section>
     <section id="coin-search">
         <section>
             <select id="coin">
@@ -274,7 +293,7 @@
                 document.getElementById('six').innerHTML=''+token[5]+' x '+bar;
                 document.getElementById('seven').innerHTML=''+token[6]+' x '+gre;
             }else{
-                document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML='<a href="/login" >login/sign-up</a>';
+                document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML='&#9883; <a href="/login" >login/sign-up</a>';
             }
             await total(token);
         xValues=[];yValues=[];
