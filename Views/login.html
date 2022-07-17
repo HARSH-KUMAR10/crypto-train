@@ -1,204 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>Crypto-Train | Login</title>
     <style>
-        *{
-            margin:0%;
-            padding:0%;
+      * {
+        margin: 0%;
+        padding: 0%;
+      }
+      body {
+        font-family: monospace;
+        background-color: #eef;
+      }
+      #header {
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: 0px 0px 2px 2px gray;
+        align-items: flex-end;
+        font-family: monospace;
+        padding: 10px;
+      }
+      #app-name {
+        font-size: 40px;
+      }
+      .fas {
+        color: yellowgreen;
+      }
+      #main {
+        background-color: white;
+        margin: 40px 30%;
+        text-align: center;
+      }
+      #nav button {
+        border: 1px solid black;
+        border-radius: 3px;
+        width: 49%;
+        padding: 10px;
+        font-size: 25px;
+        font-weight: 900;
+        margin:0%;
+      }
+      #LOGIN {
+        padding: 10px 10px;
+      }
+      #LOGIN section {
+        margin: 10px 0px;
+      }
+      #login-button {
+        background-color: #2962ff;
+        color: white;
+        font-size: 15px;
+        text-align: center;
+        padding: 15px;
+        border: 2px solid #2962ff;
+        border-radius: 2px;
+        margin: 2%;
+      }
+      #SIGNUP section {
+        margin: 10px;
+      }
+      #login-btn{
+        background-color: black;
+        color:white;
+      }
+      #signup-btn{
+        background-color: white;
+        color:black;
+      }
+      #userLogged{
+        background-color: #2962ff;
+        color:white;
+        padding:10px;
+        border-radius: 2px;
+        margin:5%;
+        font-size:15px;
+        font-weight: 900;
+      }
+      @media only screen and (max-width:900px) {
+        #main {
+        margin: 40px 5%;
         }
-        body{
-            font-family: monospace;
-            background-color: #eef;
+        #nav button {
+        width: 45%;
+        padding: 10px;
+        margin:0%;
         }
-        #header{
-            background-color: white;
-            display: flex;
-            justify-content: space-between;
-            box-shadow: 0px 0px 2px 2px gray;
-            align-items:flex-end;
-            font-family: monospace;
-            padding:10px;
-        }
-        #app-name{
-            font-size: 25px;
-            font-weight: 800;
-        }
-        .fas{
-            color:yellowgreen;
-        }
-        #main{
-            background-color: white;
-            margin:40px 30%;
-            text-align: center;
-        }
-        #nav button{
-            border: 1px solid gray;
-            border-radius: 5px;
-            width:50%;
-            padding:10px;
-            background-color: transparent;
-            color:black;
-            font-size: 30px;
-            font-weight: 800;
-        }
-        #LOGIN{
-            padding:30px 10px;
-        }
-        #LOGIN section{
-            margin:10px 0px;
-        }
-        #login-button{
-            background-color: #2962ff;
-            color:white;
-            font-size: 20px;
-            text-align: center;
-            padding:10px;
-            border:2px solid #2962ff;
-        }
-        #SIGNUP section{
-            margin:10px;
-        }
+      }
     </style>
-</head>
-<body onload="init()">
+  </head>
+  <body onload="init()">
     <section id="header">
-        <section id="app-name"><a href="/" style="text-decoration: none; color:yellowgreen">Crypto-Train</a></section>
-        <section ><i style='font-size:24px' class='fas'>&#xf406;</i><section id="userLogged"><a href="/login">login/sign-up</a></section></section>
+      <h2 id="app-name">
+        <a href="/" style="text-decoration: none; color: yellowgreen"
+          >Crypto-Train</a
+        >
+      </h2>
+      <section style="width:200px">
+        <section id="userLogged">
+            <i style="font-size: 20px" class="fas">&#xf406;</i>
+            <a style="text-decoration:none;color:white;" href="/login">login/sign-up</a>
+      </section>
+      </section>
     </section>
     <section id="main">
-        <section id="error1" style="color:yellowgreen;display: none;">User Created</section>
-        <section id="error2" style="color:red;display: none;">Error Occured</section>
-        <section id="error3" style="color:yellowgreen;display: none;">Logged In</section>
-        <section id="nav">
-            <button onclick="showLogin()">Login</button><button onclick="showSignUp()">SignUp</button>
+      <section id="nav">
+        <button id="login-btn" onclick="showLogin()">Login</button>
+        <button id="signup-btn" onclick="showSignUp()">SignUp</button>
+      </section>
+      <section style="font-size:15px;text-align:left; margin:5% 2%;">
+        <section id="error1" style="color: yellowgreen; display: none">
+          User Created
         </section>
-    <section id="LOGIN" >
+        <section id="error2" style="color: red; display: none">
+          Error Occured
+        </section>
+        <section id="error3" style="color: yellowgreen; display: none">
+          Logged In
+        </section>
+      </section>
+      <section id="LOGIN">
         <section>
-            <i class='fas' style="margin:0px;padding:10px;font-size:24px;color:black;border:1px solid gray;border-radius:10px 0px 0px 10px;">&#xf406;</i>
-            <input type="email" id="login-email" placeholder="Enter Email .." style="margin:0px;font-size: 24px;padding:8px;border:1px solid gray;border-radius:0px 10px 10px 0px"/>
+          <i
+            class="fas"
+            style="
+              margin: 0px;
+              padding: 15px;
+              font-size: 15px;
+              color: black;
+              border: 1px solid gray;
+              border-radius: 5px 0px 0px 5px;
+            "
+            >&#xf406;</i
+          >
+          <input
+            type="email"
+            id="login-email"
+            placeholder="Enter Email .."
+            style="
+              margin: 0px;
+              font-size: 15px;
+              padding: 15px;
+              border: 1px solid gray;
+              border-radius: 0px 5px 5px 0px;
+            "
+          />
         </section>
         <section>
-            <i style="margin:0px;padding:10px;font-size:24px;color:black;border:1px solid gray;border-radius:10px 0px 0px 10px;" class="fa">&#xf084;</i>
-            <input type="password" id="login-pass" placeholder="Enter password .." style="margin:0px;font-size: 24px;padding:8px;border:1px solid gray;border-radius:0px 10px 10px 0px"/>
+          <i
+            style="
+              margin: 0px;
+              padding: 15px;
+              font-size: 15px;
+              color: black;
+              border: 1px solid gray;
+              border-radius: 5px 0px 0px 5px;
+            "
+            class="fa"
+            >&#xf084;</i
+          >
+          <input
+            type="password"
+            id="login-pass"
+            placeholder="Enter password .."
+            style="
+              margin: 0px;
+              font-size: 15px;
+              padding: 15px;
+              border: 1px solid gray;
+              border-radius: 0px 5px 5px 0px;
+            "
+          />
         </section>
         <button id="login-button" onclick="checkUser()">Login</button>
-    </section>
-    <section id="SIGNUP" style="display: none;">
+      </section>
+      <section id="SIGNUP" style="display: none">
         <section>
-            <input type="text" id="fname" placeholder="Enter First Name.." style="margin:5px;font-size: 24px;padding:8px;border:1px solid gray;border-radius:10px;"/>
-            <input type="text" id="lname" placeholder="Enter Last Name.." style="margin:5px;font-size: 24px;padding:8px;border:1px solid gray;border-radius:10px;"/>
+          <input
+            type="text"
+            id="fname"
+            placeholder="Enter First Name.."
+            style="
+              margin: 5px;
+              font-size: 15px;
+              padding:15px;
+              border: 1px solid gray;
+              border-radius: 5px;
+            "
+          />
+          <input
+            type="text"
+            id="lname"
+            placeholder="Enter Last Name.."
+            style="
+              margin: 5px;
+              font-size: 15px;
+              padding: 15px;
+              border: 1px solid gray;
+              border-radius: 5px;
+            "
+          />
         </section>
         <section>
-            <i class='fas' style="margin:0px;padding:10px;font-size:24px;color:black;border:1px solid gray;border-radius:10px 0px 0px 10px;">&#xf406;</i>
-            <input type="email" id="email" placeholder="Enter Email .." style="margin:0px;font-size: 24px;padding:8px;border:1px solid gray;border-radius:0px 10px 10px 0px"/>
+          <i
+            class="fas"
+            style="
+              margin: 0px;
+              padding: 15px;
+              font-size: 15px;
+              color: black;
+              border: 1px solid gray;
+              border-radius: 5px 0px 0px 5px;
+            "
+            >&#xf406;</i
+          >
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter Email .."
+            style="
+              margin: 0px;
+              font-size: 15px;
+              padding: 15px;
+              border: 1px solid gray;
+              border-radius: 0px 5px 5px 0px;
+            "
+          />
         </section>
         <section>
-            <i style="margin:0px;padding:10px;font-size:24px;color:black;border:1px solid gray;border-radius:10px 0px 0px 10px;" class="fa">&#xf084;</i>
-            <input type="password" id="pass" placeholder="Enter password .." style="margin:0px;font-size: 24px;padding:8px;border:1px solid gray;border-radius:0px 10px 10px 0px"/>
+          <i
+            style="
+              margin: 0px;
+              padding: 15px;
+              font-size: 15px;
+              color: black;
+              border: 1px solid gray;
+              border-radius: 5px 0px 0px 5px;
+            "
+            class="fa"
+            >&#xf084;</i
+          >
+          <input
+            type="password"
+            id="pass"
+            placeholder="Enter password .."
+            style="
+              margin: 0px;
+              font-size: 15px;
+              padding: 15px;
+              border: 1px solid gray;
+              border-radius: 0px 5px 5px 0px;
+            "
+          />
         </section>
         <button id="login-button" onclick="addUser()">SignUp</button>
-    </section>
+      </section>
     </section>
     <script>
-        var url = "https://crypto-train.herokuapp.com/";
-        const error1 = document.getElementById('error1');
-        const error2 = document.getElementById('error2');
-        const error3 = document.getElementById('error3');
-        function showLogin(){
-            document.getElementById('LOGIN').style.display="block";
-            document.getElementById('SIGNUP').style.display="none";
+      var url = "https://crypto-train.herokuapp.com/";
+      const error1 = document.getElementById("error1");
+      const error2 = document.getElementById("error2");
+      const error3 = document.getElementById("error3");
+      function showLogin() {
+        document.getElementById("LOGIN").style.display = "block";
+        document.getElementById("SIGNUP").style.display = "none";
+        document.getElementById("login-btn").style.backgroundColor = "black";
+        document.getElementById("signup-btn").style.backgroundColor = "white";
+        document.getElementById("login-btn").style.color = "white";
+        document.getElementById("signup-btn").style.color = "black";
+      }
+      function showSignUp() {
+        document.getElementById("LOGIN").style.display = "none";
+        document.getElementById("SIGNUP").style.display = "block";
+        document.getElementById("login-btn").style.backgroundColor = "white";
+        document.getElementById("signup-btn").style.backgroundColor = "black";
+        document.getElementById("login-btn").style.color = "black";
+        document.getElementById("signup-btn").style.color = "white";
+      }
+      function checkVariable(x) {
+        if (x != null && x != undefined && x != "") {
+          return true;
         }
-        function showSignUp(){
-            document.getElementById('LOGIN').style.display="none";
-            document.getElementById('SIGNUP').style.display="block";
+        return false;
+      }
+      async function addUser() {
+        var a = document.getElementById("fname").value;
+        var b = document.getElementById("lname").value;
+        var c = document.getElementById("email").value;
+        var d = document.getElementById("pass").value;
+        if (
+          checkVariable(a) &&
+          checkVariable(b) &&
+          checkVariable(c) &&
+          checkVariable(d)
+        ) {
+          await fetch(
+              "/addUser?Fname=" +
+              a +
+              "&Lname=" +
+              b +
+              "&Email=" +
+              c +
+              "&Password=" +
+              d
+          )
+            .then((res) => res.json())
+            .then((d) => {
+              if (d) {
+                console.log("user created");
+                document.getElementById("fname").value = "";
+                document.getElementById("lname").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("pass").value = "";
+                error1.style.display = "block";
+                error2.style.display = "none";
+                error3.style.display = "none";
+              } else {
+                console.log("error occured");
+                error1.style.display = "none";
+                error2.style.display = "block";
+                error3.style.display = "none";
+              }
+            });
+        } else {
+          error1.style.display = "none";
+          error2.style.display = "block";
+          error3.style.display = "none";
         }
-        function checkVariable(x){
-            if(x!=null&&x!=undefined&&x!=''){
-                return true;
-            }
-            return false;
-        }
-        async function addUser(){
-            var a = document.getElementById('fname').value;
-            var b = document.getElementById('lname').value;
-            var c = document.getElementById('email').value;
-            var d = document.getElementById('pass').value;
-            if(checkVariable(a)&&checkVariable(b)&&checkVariable(c)&&checkVariable(d)){
-                await fetch(url+'/addUser?Fname='+a+"&Lname="+b+"&Email="+c+"&Password="+d).then(res=>res.json()).then(d=>{
-                    if(d){
-                        console.log('user created');
-                        document.getElementById('fname').value='';
-                        document.getElementById('lname').value='';
-                        document.getElementById('email').value='';
-                        document.getElementById('pass').value='';
-                        error1.style.display="block";
-                        error2.style.display="none";
-                        error3.style.display="none";
-                    }else{
-                        console.log('error occured');
-                        error1.style.display="none";
-                        error2.style.display="block";
-                        error3.style.display="none";
-                    }
-                })
-            }else{
-                error1.style.display="none";
-                error2.style.display="block";
-                error3.style.display="none";
-            }
-        }
+      }
 
-        async function checkUser(){
-            var a = document.getElementById('login-email').value;
-            var b = document.getElementById('login-pass').value;
-            if(checkVariable(a)&&checkVariable(b)){
-                await fetch(url+'/checkUser?Email='+a+'&Password='+b).then(res=>res.json()).then(d=>{
-                    if(d.logged){
-                        setDataItems(d.data);
-                        error1.style.display="none";
-                        error2.style.display="none";
-                        error3.style.display="block";
-                        console.log(d.data);
-                        init();
-                    }else{
-                        error1.style.display="none";
-                        error2.style.display="block";
-                        error3.style.display="none";
-                        console.log(d.data);
-                    }
-                })
-            }else{
-                error1.style.display="none";
-                error2.style.display="block";
-                error3.style.display="none";
-            }
+      async function checkUser() {
+        var a = document.getElementById("login-email").value;
+        var b = document.getElementById("login-pass").value;
+        if (checkVariable(a) && checkVariable(b)) {
+          await fetch("/checkUser?Email=" + a + "&Password=" + b)
+            .then((res) => res.json())
+            .then((d) => {
+              if (d.logged) {
+                setDataItems(d.data);
+                error1.style.display = "none";
+                error2.style.display = "none";
+                error3.style.display = "block";
+                console.log(d.data);
+                init();
+              } else {
+                error1.style.display = "none";
+                error2.style.display = "block";
+                error3.style.display = "none";
+                console.log(d.data);
+              }
+            });
+        } else {
+          error1.style.display = "none";
+          error2.style.display = "block";
+          error3.style.display = "none";
         }
+      }
 
-        function setDataItems(x){
-            localStorage.setItem('email',x[0].Email);
-            localStorage.setItem('pass',x[0].Password);
-            localStorage.setItem('tokens',x[0].Token)
+      function setDataItems(x) {
+        localStorage.setItem("email", x[0].Email);
+        localStorage.setItem("pass", x[0].Password);
+        localStorage.setItem("tokens", x[0].Token);
+      }
+      function init() {
+        var email = localStorage.getItem("email");
+        var token = localStorage.getItem("tokens");
+        if (checkVariable(email) && checkVariable(token)) {
+          document.getElementById("userLogged").innerHTML =
+            document.getElementById("userLogged").innerHTML =
+              email + " <button onclick='logout()'>logout</button>";
+          location.href = "/";
         }
-        function init(){
-            var email = localStorage.getItem('email');
-            var token = localStorage.getItem('tokens');
-            if(checkVariable(email)&&checkVariable(token)){
-                document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML=email+" <button onclick='logout()'>logout</button>";;
-                location.href="/";
-            }
-        }
-        function logout(){
-            localStorage.setItem('email','');
-            localStorage.setItem('pass','');
-            localStorage.setItem('tokens','');
-            init();
-        }
+      }
+      function logout() {
+        localStorage.setItem("email", "");
+        localStorage.setItem("pass", "");
+        localStorage.setItem("tokens", "");
+        init();
+      }
     </script>
-</body>
+  </body>
 </html>

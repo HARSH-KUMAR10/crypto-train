@@ -17,18 +17,17 @@
         html{
             scroll-behavior: smooth;
         }
-        #header{
-            background-color: white;
-            display: flex;
-            justify-content: space-between;
-            box-shadow: 0px 0px 2px 2px gray;
-            align-items:flex-end;
-            font-family: monospace;
-            padding:10px;
+        #header {
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: 0px 0px 2px 2px gray;
+        align-items: flex-end;
+        font-family: monospace;
+        padding: 10px;
         }
-        #app-name{
-            font-size: 25px;
-            font-weight: 800;
+        #app-name {
+            font-size: 40px;
         }
         .fas{
             color:yellowgreen;
@@ -49,6 +48,7 @@
             font-weight: 900;
             text-align: center;
             padding: 0px 0px 40px 0px;
+            color:yellowgreen;
         }
         #how-to-steps{
             box-shadow: 0px 0px 2px 2px gray;
@@ -56,6 +56,7 @@
             border:1px solid black;
             border-radius: 10px;
             margin:10px;
+            background-color: white;
         }
         #how-to-topic{
             font-size: 20px;
@@ -85,6 +86,7 @@
             margin:2px 0px;
             padding:20px 20px 20px 20px;
             font-family: verdana;
+            padding:5%;
         }
         #coin{
             border:2px solid black;
@@ -99,6 +101,7 @@
             font-weight: 900;
             text-align: center;
             padding: 0px 0px 40px 0px;
+            color:yellowgreen;
         }
         #coin-name{
             font-size: 20px;
@@ -125,21 +128,49 @@
             text-decoration: none;
         }
         #score-card-row{
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid black;
             display: flex;
             justify-content: space-between;
-            margin:5px 100px;
+            margin:5px 5%;
+            padding:10px;
         }
+        #userLogged{
+        background-color: #2962ff;
+        color:white;
+        padding:10px;
+        border-radius: 2px;
+        margin:5%;
+        font-size:15px;
+        font-weight: 900;
+      }
+      @media only screen and (max-width:900px) {
+        #how-to-steps{
+            width: 80%;
+            margin-bottom:10px;
+        }
+        #coin{
+            width: 43%;
+            margin-bottom:5px;
+        }
+      }
     </style>
 </head>
 <body>
     <section id="header">
-        <section id="app-name">Crypto-Train</section>
-        <section><i style='font-size:24px' class='fas'>&#xf406;</i><section id='userLogged'><a href="/login" >login/sign-up</a></section></section>
-    </section>
-    <section id="how-to">
-        <section id="how-to-header">How to use our Platform ?</section>
+        <h4 id="app-name">
+          <a style="text-decoration: none; color: yellowgreen"
+            >Crypto-Train</a
+          >
+        </h4>
+        <section style="width:200px">
+          <section id="userLogged">
+              <i style="font-size: 20px" class="fas">&#xf406;</i>
+              <a style="text-decoration:none;color:white;" href="/login">login/sign-up</a>
+        </section>
+        </section>
+      </section>
+    <section id="how-to" style="background-color: #ccc; color: black;">
+        <section id="how-to-header">How to use our Platform?</section>
         <section id="how-to-line">
         <section id="how-to-steps">
             <section id="how-to-topic">1. Sign-up or Login to your account</section>
@@ -194,10 +225,43 @@
         </section>
         </section>
     </section>
-    <section id="score-card">
+    <section id="score-card" style="background-color: #ccc; color: black;">
         <section id="score-card-header"> Score-Board </section>
-        <section id='score'></section>
+        <hr color="black"/>
+        <section id="score-card-row" style="border:none;"><h3>Name</h3> <h3>Holdings</h3></section>
+        <hr color="black"/>
+        <section id='score'> loading ... </section>
     </section>
+
+    <section id="score-card">
+        <section id="score-card-header"> Why Crypto-Train was created ? </section>
+        <section style="margin:2% 10%;">
+            I was and am always curious about the trading market . Both the stock-exchange and the crypto-world has been one of my friends for some time now. I started investing in these as soon as I turned 18. So, as a trainee myself, I wanted to create a platform where all can train themselves and have a playful environment.
+        </section>
+    </section>
+
+    <section id="score-card" style="background-color: #ccc; color: black;">
+        <section id="score-card-header"> How Crypto-Train was created ? </section>
+        <section style="margin:2% 10%;">
+            I have build the whole web application on HTML5, CSS3, and JS frontend, with NodeJS as it's backend , and MongoDB as the database.<br/><br/>
+            It is a crypto-currency training game, where you can buy and sell coins, and make a score for yourself on the Score-Board, while learning how to use crypto-tools
+        </section>
+    </section>
+
+    <section id="score-card">
+        <section id="score-card-header"> Future Works </section>
+        <section style="margin:2% 10%;">
+            <ul>
+            <li> Thinking of adding an event section where trading will take place for a specific period of time and atlast a winner will be announced</li>
+        <li> Thinking of taking up tournament with prize to enouage people to practice trading with us</li>
+    <li> I want to extend this project with more number of coins. </li>
+<li> I want to add a section for users to see their past details. </li>
+<li> I want to add a search option where the users can see the other users playing tactics also. </li>
+<li> I want a section for discussions also, because I can't imagine how the discussion would be like.</li>
+            </ul>
+        </section>
+    </section>
+
     <script>
         var url="https://crypto-train.herokuapp.com/";
         var token=[];
@@ -207,9 +271,10 @@
         var email = localStorage.getItem('email');
         var token = localStorage.getItem('tokens');
         if(checkVariable(email)&&checkVariable(token)){
-            document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML=email+" <button onclick='logout()'>logout</button>";
+            document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML=email+" <br/><button onclick='logout()'>logout</button>";
         }else{
-            document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML='<a href="/login" >login/sign-up</a>';
+            document.getElementById('userLogged').innerHTML=document.getElementById('userLogged').innerHTML=`<i style="font-size: 20px" class="fas">&#xf406;</i>
+              <a style="text-decoration:none;color:white;" href="/login">login/sign-up</a>`;
         }
         await getMarketPrice();
         await getScores();
@@ -228,7 +293,8 @@
         }
         async function getScores(){
             var html = "";
-            await fetch(url+'/getAll').then(res=>res.json()).then(data=>{
+            await fetch('/getAll').then(res=>res.json()).then(data=>{
+                console.log('data : ',data);
                 for(i=0;i<data.length;i++){
                 html+='<section id="score-card-row"><section>'+data[i].FirstName+' '+data[i].LastName+'</section> <section>'+total(data[i].Token)+'</section> </section>'
                 }

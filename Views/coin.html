@@ -95,6 +95,28 @@
             font-weight: 600;
             padding:5px;
         }
+        #market-space{
+            display: flex;
+            justify-content: space-around;
+        }
+        @media only screen and (max-width:900px) {
+            #market-myself{
+            width: 80%;
+            margin:10px;
+        }
+        #market-main{
+            width:80%;
+            padding:10px;
+            margin:10px;
+        }
+        #market-space{
+            display: block;
+        }
+        #coin-search{
+            display: block;
+            text-align: center;
+        }
+        }
     </style>
 </head>
 <body onload="init()">
@@ -128,7 +150,7 @@
     </section>
     <section id="Market">
         <section id="market-header">Your Portfolio</section>
-        <section style="display: flex;justify-content: space-around;">
+        <section id="market-space">
         <section id="market-myself">
         <section id="market-you">Your Possesion</section>
         <section id="token-data">
@@ -165,7 +187,6 @@
         </section>
     </section>
     <script>
-    var url = "https://crypto-train.herokuapp.com/";
     var xValues = [50,60,70,80,90,100,110,120,130,140,150];
     var yValues = [7,8,8,9,9,9,10,11,14,14,15];
     var lan=0,sta=0,tar=0,mar=0,bar=0,gre=0;
@@ -236,7 +257,7 @@
             email = localStorage.getItem('email');
             pass = localStorage.getItem('pass');
             var tokens = localStorage.getItem('tokens');
-            await fetch(url+'/checkUser?Email='+email+'&Password='+pass).then(res=>res.json()).then(d=>{
+            await fetch('/checkUser?Email='+email+'&Password='+pass).then(res=>res.json()).then(d=>{
                 if(d.logged){
                     tokens=d.data[0].Token;
                 }
@@ -364,7 +385,7 @@
                         token[0]=token[0]-coinAmount*amount;
                         token[coin]=parseFloat(token[coin])+parseFloat(amount);
                         console.log(token);
-                        await fetch(url+'/updateToken?Email='+email+"&Pass="+pass+"&token="+token).then(res=>res.json()).then(d=>{
+                        await fetch('/updateToken?Email='+email+"&Pass="+pass+"&token="+token).then(res=>res.json()).then(d=>{
                             if(d){
                     document.getElementById('errorx').style.display="none";
                     document.getElementById('errory').style.display="none";
@@ -396,7 +417,7 @@
                     token[coin]-=amount;
                     console.log(amount,coinAmount)
                     console.log(token);
-                    await fetch(url+'/updateToken?Email='+email+"&Pass="+pass+"&token="+token).then(res=>res.json()).then(d=>{
+                    await fetch('/updateToken?Email='+email+"&Pass="+pass+"&token="+token).then(res=>res.json()).then(d=>{
                             if(d){
                     document.getElementById('errorx').style.display="none";
                     document.getElementById('errory').style.display="none";

@@ -64,7 +64,6 @@ app.get('/updateToken',(req,res)=>{
 
 app.get('/getAll',async (req,res)=>{
     var result = await db.user.find();
-    console.log(result);
     res.json(result);
 })
 
